@@ -2,6 +2,8 @@ package partie1;
 
 public interface Jauge {
 	
+	public enum type {REEL , NEGATIF , NATUREL , DISTANCE}; // type des jauge
+
 	
 	public boolean estRouge();
 	public boolean estVert();

@@ -76,9 +76,8 @@ public class EtatPassagerMonter implements IEtatPassager{
   }
 
 
-@Override
-public boolean estExterieur() {
-	// TODO Auto-generated method stub
-	return false;
-}
+	@Override
+	public boolean estExterieur() {
+		return false;
+	}
 }

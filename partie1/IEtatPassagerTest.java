@@ -8,7 +8,67 @@ import org.junit.Test;
 
 public class IEtatPassagerTest implements IEtatPassager {
 	EtatPassager ep1 , ep2 , ep3;
-
+	
+	public IEtatPassager creerAssis (etat type) {
+		IEtatPassager result = null;
+		switch (type) {
+		case PASSAGER:
+			result = new EtatPassager(EtatPassager.Etat.ASSIS);
+			break;
+		
+		case CHAINE:
+			result =new EtatPassagerChaine("ASSIS");
+			break;
+			
+		case MONTER:
+			result = new EtatPassagerMonter(EtatPassagerMonter.Etat.ASSIS);
+			break;
+		default:
+			break;
+		}
+		return result;
+	}
+	
+	public IEtatPassager creerDehors (etat type) {
+		IEtatPassager result = null;
+		switch (type) {
+		case PASSAGER:
+			result = new EtatPassager(EtatPassager.Etat.DEHORS);
+			break;
+		
+		case CHAINE:
+			result =new EtatPassagerChaine("DEHORS");
+			break;
+			
+		case MONTER:
+			result = null;
+			break;
+		default:
+			break;
+		}
+		return result;
+		}
+	
+	public IEtatPassager creerDebout (etat type) {
+		IEtatPassager result = null;
+		switch (type) {
+		case PASSAGER:
+			result = new EtatPassager(EtatPassager.Etat.DEBOUT);
+			break;
+		
+		case CHAINE:
+			result = new EtatPassagerChaine("DEBOUT");
+			break;
+			
+		case MONTER:
+			result = new EtatPassagerMonter(EtatPassagerMonter.Etat.DEBOUT);
+			break;
+		default:
+			break;
+		}
+		return result;
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		ep1 = new EtatPassager(EtatPassager.Etat.ASSIS);
