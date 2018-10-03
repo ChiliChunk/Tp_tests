@@ -124,9 +124,17 @@ public class JaugeTest {
 	}
 	
 	@Test
-	private void testCreationNonValide ( ) { 
-		Jauge inverse = creerJauge ( 78 , 13 , 0 ) ;
-		Jauge egale = creerJauge ( -45 , -45, -45); 
+	public void testCreationNonValide ( ) { 
+		try {
+			Jauge inverse = creerJauge ( 78 , 13 , 0 ) ;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		try {
+			Jauge egale = creerJauge ( -45 , -45, -45);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	@Test

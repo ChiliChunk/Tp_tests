@@ -32,6 +32,9 @@ public class JaugeNaturel implements Jauge {
    * @param depart   valeur initiale de la jauge.
    */
   public JaugeNaturel(long vigieMin, long vigieMax, long depart) {
+	  if (vigieMax <= vigieMin) {
+		  throw new IllegalArgumentException();
+	  }
     valeur = depart;
     min = vigieMin;
     max = vigieMax;

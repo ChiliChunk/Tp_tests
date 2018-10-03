@@ -32,6 +32,9 @@ public class JaugeReel implements Jauge{
    * @param depart   valeur initiale de la jauge.
    */
   public JaugeReel(float vigieMin, float vigieMax, float depart) {
+	  if (vigieMax <= vigieMin) {
+		  throw new IllegalArgumentException();
+	  }
     valeur = depart/1000;
     min = vigieMin/1000;
     max = vigieMax/1000;
