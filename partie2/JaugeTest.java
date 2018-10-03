@@ -1,4 +1,4 @@
-package partie1;
+package partie2;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -33,6 +33,10 @@ public class JaugeTest {
 			break;
 		}
 		return result;
+	}
+	
+	public Jauge creerJauge ( int min , int max , int depart) { // pour la question du cours
+		return new JaugeNaturel(min, max, depart);
 	}
 	
 	private JaugeNaturel j1 , j2 , j3 , j4 , j5 , j6 , j7 , j8 , j9 , j10;
@@ -120,24 +124,9 @@ public class JaugeTest {
 	}
 	
 	@Test
-	public void testLimiteVigieMaxInferieurVigieMin() {
-		assert j6.estBleu() == true : "La jauge doit etre bleue";
-		assert j6.estRouge() == true : "La jauge doit etre rouge";
-		assert j6.estVert() == false : "La jauge ne doit pas etre verte";
-		// l'etat n'est pas coherent mais est autorisé dans ce programme, les tests peuvent donc passer
-	}
-	
-	@Test
-	public void testMaxEgaleMin () {
-		assert j7.estBleu() == true : "La jauge doit etre bleue";
-		assert j7.estRouge() == true : "La jauge doit etre rouge";
-		assert j7.estVert() == false : "La jauge ne doit pas etre verte";
-		
-		assert j8.estBleu() == false : "La jauge ne doit pas etre bleue";
-		assert j8.estRouge() == true : "La jauge doit etre rouge";
-		assert j8.estVert() == false : "La jauge ne doit pas etre verte";
-		
-		//cet état est deja plus cohérent mais il faudrit que la jauge soit bleu quand val < min et pas val <= min, comme ça nous pourrions avoir une jauge verte quand max = min = depart
+	private void testCreationNonValide ( ) { 
+		Jauge inverse = creerJauge ( 78 , 13 , 0 ) ;
+		Jauge egale = creerJauge ( -45 , -45, -45); 
 	}
 	
 	@Test

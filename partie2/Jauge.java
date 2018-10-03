@@ -1,4 +1,4 @@
-package partie1;
+package partie2;
 
 public interface Jauge {
 		

@@ -6,8 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class IEtatPassagerTest implements IEtatPassager {
+public class IEtatPassagerTest {
 	EtatPassager ep1 , ep2 , ep3;
+	
+	public enum etat {PASSAGER , CHAINE , MONTER};
 	
 	public IEtatPassager creerAssis (etat type) {
 		IEtatPassager result = null;
@@ -41,7 +43,7 @@ public class IEtatPassagerTest implements IEtatPassager {
 			break;
 			
 		case MONTER:
-			result = null;
+			result = null; // ne passera pas le test d'instanciation (assertNotNull)
 			break;
 		default:
 			break;
@@ -117,30 +119,6 @@ public class IEtatPassagerTest implements IEtatPassager {
 		assertEquals("la string attendue est <ASSIS>", "<ASSIS>", ep1.toString());
 		assertEquals("la string attendue est <DEBOUT>", "<DEBOUT>", ep2.toString());
 		assertEquals("la string attendue est <DEHORS>", "<DEHORS>", ep3.toString());
-	}
-
-	@Override
-	public boolean estExterieur() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean estAssis() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean estDebout() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean estInterieur() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

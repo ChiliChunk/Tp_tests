@@ -1,56 +1,28 @@
-package partie1;
+package partie2;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JaugeTest {
+public class JaugeDistanceTest {
 	
-	public enum type {REEL , NEGATIF , NATUREL , DISTANCE}; // type des jauge
-	
-	public Jauge creerJauge (type t , int min , int max , int depart) {
-		Jauge result;
-		switch (t) {
-		case REEL:
-			result = new JaugeReel(min, max, depart);
-			break;
-		
-		case NEGATIF:
-			result = new JaugeNegatif(min, max, depart);
-			break;
-			
-		case NATUREL:
-			result = new JaugeNaturel(min, max, depart);
-			break;
-			
-		case DISTANCE:
-			result = new JaugeDistance(min, max, depart);
-			break;
-			
-		default:
-			result = null;
-			break;
-		}
-		return result;
-	}
-	
-	private JaugeNaturel j1 , j2 , j3 , j4 , j5 , j6 , j7 , j8 , j9 , j10;
+	private JaugeDistance j1 , j2 , j3 , j4 , j5 , j6 , j7 , j8 , j9 , j10;
 	
 	@Before
 	public void setUp() throws Exception {
-		j1 = new JaugeNaturel(10, 100, 11); //verte
-		j2 = new JaugeNaturel(50, 100, 35); // bleu
-		j3 = new JaugeNaturel(0, 50, 60); // rouge
-		j4 = new JaugeNaturel (0,50,0); // departe == min
-		j5 = new JaugeNaturel(10, 50, 8); // depart < min
-		j6 = new JaugeNaturel(50, 40, 45); // max<depart<min
-		j7 = new JaugeNaturel(50, 50, 50); // max = min = depart
-		j8 = new JaugeNaturel(50, 50, 80); // max = min < depart
-		j9 = new JaugeNaturel(10, 40, 50); // min < max < depart
-		j10 = new JaugeNaturel(10, 50, 50); // min < max = depart
+		j1 = new JaugeDistance(10, 100, 11); //verte
+		j2 = new JaugeDistance(50, 100, 35); // bleu
+		j3 = new JaugeDistance(0, 50, 60); // rouge
+		j4 = new JaugeDistance (0,50,0); // departe == min
+		j5 = new JaugeDistance(10, 50, 8); // depart < min
+		j6 = new JaugeDistance(50, 40, 45); // max<depart<min
+		j7 = new JaugeDistance(50, 50, 50); // max = min = depart
+		j8 = new JaugeDistance(50, 50, 80); // max = min < depart
+		j9 = new JaugeDistance(10, 40, 50); // min < max < depart
+		j10 = new JaugeDistance(10, 50, 50); // min < max = depart
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		j1 = null;
@@ -59,7 +31,7 @@ public class JaugeTest {
 	}
 
 	@Test
-	public void testJaugeNaturel() {
+	public void testJaugeDistance() {
 		assertNotNull("Ma jauge a bien ete creee" , j1);
 	}
 

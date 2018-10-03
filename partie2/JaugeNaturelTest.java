@@ -1,39 +1,11 @@
-package partie1;
+package partie2;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JaugeTest {
-	
-	public enum type {REEL , NEGATIF , NATUREL , DISTANCE}; // type des jauge
-	
-	public Jauge creerJauge (type t , int min , int max , int depart) {
-		Jauge result;
-		switch (t) {
-		case REEL:
-			result = new JaugeReel(min, max, depart);
-			break;
-		
-		case NEGATIF:
-			result = new JaugeNegatif(min, max, depart);
-			break;
-			
-		case NATUREL:
-			result = new JaugeNaturel(min, max, depart);
-			break;
-			
-		case DISTANCE:
-			result = new JaugeDistance(min, max, depart);
-			break;
-			
-		default:
-			result = null;
-			break;
-		}
-		return result;
-	}
+public class JaugeNaturelTest {
 	
 	private JaugeNaturel j1 , j2 , j3 , j4 , j5 , j6 , j7 , j8 , j9 , j10;
 	
@@ -50,7 +22,7 @@ public class JaugeTest {
 		j9 = new JaugeNaturel(10, 40, 50); // min < max < depart
 		j10 = new JaugeNaturel(10, 50, 50); // min < max = depart
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		j1 = null;
