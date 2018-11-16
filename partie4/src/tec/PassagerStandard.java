@@ -4,7 +4,7 @@ import java.util.Random;
 
 import tec.EtatPassager.Etat;
 
-public class PassagerStandard implements Usager {
+public class PassagerStandard implements Usager , Passager {
 	private EtatPassager EP;
 	private String nom;
 	private int arret;
@@ -34,8 +34,7 @@ public class PassagerStandard implements Usager {
 	}
 	@Override
 	public String nom() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nom;
 	}
 
 	@Override
@@ -56,5 +55,42 @@ public class PassagerStandard implements Usager {
 			// TODO Auto-generated method stub
 			return super.toString();
 		}
+	@Override
+	public boolean estDehors() {
+		return this.getEP().estExterieur();
+	}
+	
+	@Override
+	public boolean estAssis() {
+		return this.getEP().estAssis();
+	}
+	
+	@Override
+	public boolean estDebout() {
+		return this.getEP().estDebout();
+	}
+	
+	@Override
+	public void accepterSortie() {
+		this.EP = new EtatPassager (Etat.DEHORS);
+	}
+	
+	@Override
+	public void accepterPlaceAssise() {
+		this.EP = new EtatPassager (Etat.ASSIS);		
+	}
+	
+	@Override
+	public void accepterPlaceDebout() {
+		this.EP = new EtatPassager (Etat.DEBOUT);		
+	}
+	
+	@Override
+	public void nouvelArret(Bus bus, int numeroArret) {
+		if (numeroArret == this.arret) {
+			this.accepterSortie();
+		}
+		//rajouter l'interaction avec le bus
+	}
 
 }
