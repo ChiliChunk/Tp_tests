@@ -51,28 +51,55 @@ public class AutobusTest {
 		assertEquals(a.aPlaceDebout(), false);
 	}
 
+	@Test
+	public void testDemanderPlaceAssise() {
+		a.setJaugeAssis(new JaugeNaturel(0,2,0));
+		assertTrue(a.aPlaceAssise());
+		a.demanderPlaceAssise(null);
+		a.demanderPlaceAssise(null);
+		assertFalse(a.aPlaceAssise());
+	}
+
+	@Test
+	public void testDemanderPlaceDebout() {
+		a.setJaugeDebout(new JaugeNaturel(0,2,0));
+		assertTrue(a.aPlaceDebout());
+		a.demanderPlaceDebout(null);
+		a.demanderPlaceDebout(null);
+		assertFalse(a.aPlaceDebout());
+	}
+
+	@Test
+	public void testDemanderChangerEnDebout() {
+		a.setJaugeDebout(new JaugeNaturel(0,2,0));
+		a.setJaugeAssis(new JaugeNaturel(0,2,0));
+		a.demanderPlaceAssise(null);
+		a.demanderPlaceAssise(null);
+		assertFalse(a.aPlaceAssise());
+		assertTrue(a.aPlaceDebout());
+		a.demanderChangerEnDebout(null);
+		a.demanderChangerEnDebout(null);
+		assertFalse(a.aPlaceDebout());
+		assertTrue(a.aPlaceAssise());
+
+	}
+
+	@Test
+	public void testDemanderChangerEnAssis() {
+		a.setJaugeDebout(new JaugeNaturel(0,2,0));
+		a.setJaugeAssis(new JaugeNaturel(0,2,0));
+		a.demanderPlaceDebout(null);
+		a.demanderPlaceDebout(null);
+		assertTrue(a.aPlaceAssise());
+		assertFalse(a.aPlaceDebout());
+		a.demanderChangerEnAssis(null);
+		a.demanderChangerEnAssis(null);
+		assertTrue(a.aPlaceDebout());
+		assertFalse(a.aPlaceAssise());
+	}
+
 //	@Test
-//	public void testDemanderPlaceAssise() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testDemanderPlaceDebout() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testDemanderChangerEnDebout() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testDemanderChangerEnAssis() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testDemanderSortie() {
+//	public void testDemanderSortie() { // comment faire si aucune interaction encore avec Passager?
 //		fail("Not yet implemented");
 //	}
 

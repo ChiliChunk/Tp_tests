@@ -43,12 +43,8 @@ public class Autobus implements Transport, Bus{
 	
 	@Override
 	public String toString() {
-		
 		return "[ arret : " + this.getIndArret() + " ; assis : " + this.jaugeAssis.getValeur() + " ; debout : " + this.jaugeDebout.getValeur() + "]";
-		
 	}
-
-
 
 	@Override
 	public boolean aPlaceAssise() {
@@ -63,26 +59,37 @@ public class Autobus implements Transport, Bus{
 
 	@Override
 	public void demanderPlaceAssise(Passager p) {
-		// TODO Auto-generated method stub
+		if (this.jaugeAssis.estBleu() || this.jaugeAssis.estVert()) { // il y a de la place
+			this.jaugeAssis.incrementer();
+		}
+		
+		// rajouter interaction avec p
 		
 	}
 
 	@Override
 	public void demanderPlaceDebout(Passager p) {
-		// TODO Auto-generated method stub
+		if (this.jaugeDebout.estBleu() || this.jaugeDebout.estVert()) { // il y a de la place
+			this.jaugeDebout.incrementer();
+		}
 		
 	}
 
 	@Override
 	public void demanderChangerEnDebout(Passager p) {
-		// TODO Auto-generated method stub
+		if (this.jaugeDebout.estBleu() || this.jaugeDebout.estVert()) { // il y a de la place
+			this.jaugeDebout.incrementer();
+			this.jaugeAssis.decrementer();
+		}		
 		
 	}
 
 	@Override
 	public void demanderChangerEnAssis(Passager p) {
-		// TODO Auto-generated method stub
-		
+		if (this.jaugeAssis.estBleu() || this.jaugeAssis.estVert()) { // il y a de la place
+			this.jaugeAssis.incrementer();
+			this.jaugeDebout.decrementer();
+		}				
 	}
 
 	@Override
