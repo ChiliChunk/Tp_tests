@@ -1,1 +1,6 @@
 *.class
+/.metadata/
+/partie4/.project
+/partie4/.gitignore
+/partie4/.classpath
+/partie4/.settings/
