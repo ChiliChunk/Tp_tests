@@ -42,9 +42,29 @@ public class JaugeNaturel implements Jauge {
      * Son nom correspond toujours au nom de la classe. Il n'y a pas de type de retour.
      */
   }
+  
+
+  public long getValeur() {
+	return valeur;
+}
 
 
-  /**
+public void setValeur(long valeur) {
+	this.valeur = valeur;
+}
+
+
+public long getMin() {
+	return min;
+}
+
+
+public long getMax() {
+	return max;
+}
+
+
+/**
    * L'état de la jauge est-il rouge ?
    *
    * @return vrai si niveau >=  vigieMax.
