@@ -32,6 +32,7 @@ class Simple {
   }
 
   static public void main (String[] args) throws UsagerInvalideException {
+	 
     Transport serenity = new Autobus(1, 2);
 
     Usager kaylee = new PassagerStandard("Kaylee", 5);
