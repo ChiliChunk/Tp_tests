@@ -22,6 +22,10 @@ public class EtatPassager implements IEtatPassager{
    * 
    * @param e  valeur de l'état.
    */
+  
+  public Etat getEtat() {
+	  return monEtat;
+  }
   public EtatPassager(Etat e) {
     monEtat = e;
 

@@ -68,5 +68,7 @@ interface Bus {
    * @param p le passager avec un état soit assis soit debout.
    */
   public void demanderSortie(Passager p);
+  
+  public void addPassager(Passager p );
 }
 

@@ -39,21 +39,30 @@ public class PassagerStandard implements Usager , Passager {
 
 	@Override
 	public void monterDans(Transport t) throws UsagerInvalideException {
-		Random rand = new Random();
-		int  n = rand.nextInt(2) + 1;
-		if(n == 1) {
-			this.EP = new EtatPassager(Etat.DEBOUT);
+		Bus b = null ;
+		boolean error = false;
+		try{
+			b = (Bus)t;
+		}catch(Exception e) {
+			error = true;
+			System.out.println("Le transport donné n'est pas un bus");
 		}
-		else {
-			this.EP = new EtatPassager(Etat.ASSIS); 
-		}
+		
+		if (error == false) { // si le cast s'est bien passé
+			b.demanderPlaceAssise(this);
+			if (this.estAssis() == false) { // si il n'a pas reussi a avoir de place assise
+				b.demanderPlaceDebout(this);
+			}
+			if (this.EP.getEtat() != Etat.DEHORS) { // si il a reussi a monter, on l'ajoute dans la liste du bus
+				b.addPassager(this);
+			}
+		}	
 	}
 	
 
 	@Override
 		public String toString() {
-			// TODO Auto-generated method stub
-			return super.toString();
+			return "volonté : " + this.arret + " Nom : " + this.nom + " etat : " + this.EP;
 		}
 	@Override
 	public boolean estDehors() {
@@ -77,20 +86,19 @@ public class PassagerStandard implements Usager , Passager {
 	
 	@Override
 	public void accepterPlaceAssise() {
-		this.EP = new EtatPassager (Etat.ASSIS);		
+		this.EP = new EtatPassager (Etat.ASSIS);
 	}
 	
 	@Override
 	public void accepterPlaceDebout() {
-		this.EP = new EtatPassager (Etat.DEBOUT);		
+		this.EP = new EtatPassager (Etat.DEBOUT);
 	}
 	
 	@Override
 	public void nouvelArret(Bus bus, int numeroArret) {
 		if (numeroArret == this.arret) {
-			this.accepterSortie();
+			bus.demanderSortie(this);
 		}
-		//rajouter l'interaction avec le bus
 	}
 
 }
