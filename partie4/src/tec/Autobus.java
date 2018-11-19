@@ -9,6 +9,7 @@ public class Autobus implements Transport, Bus{
 	private JaugeNaturel jaugeAssis;
 	private int indArret;
 	private ArrayList<Passager> alPassager;
+	private ArrayList<Passager> toRemove;
 	
 	public ArrayList<Passager> getListPassager(){
 		return this.alPassager;
@@ -48,6 +49,7 @@ public class Autobus implements Transport, Bus{
 		this.jaugeDebout = new JaugeNaturel(0, debout, 0);
 		this.indArret = 0;
 		this.alPassager = new ArrayList<Passager>();
+		this.toRemove = new ArrayList<Passager>();
 	}
 
 	@Override
@@ -56,6 +58,8 @@ public class Autobus implements Transport, Bus{
 		for (Passager pass : this.alPassager) { // on notifie tout les passagers du nouvel arret
 			pass.nouvelArret(this, indArret);
 		}
+		this.alPassager.removeAll(toRemove); // on les remove tous a la fin pour ne pas changer l'arraylist des passager pdt qu'on la parcours
+		this.toRemove.clear();
 	}
 	
 	@Override
@@ -116,7 +120,7 @@ public class Autobus implements Transport, Bus{
 
 	@Override
 	public void demanderSortie(Passager p) {
-		this.alPassager.remove(p);
+		this.toRemove.add(p);
 		Etat et = null;
 		try {
 			et = ((PassagerStandard)p).getEP().getEtat();

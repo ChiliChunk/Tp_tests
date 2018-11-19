@@ -21,7 +21,7 @@ public class PassagerStandardTest {
 	
 	@Test
 	public void testPassagerStandard () {
-		
+		assertNotNull(p);
 	}
 	
 	@Test

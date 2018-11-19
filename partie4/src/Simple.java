@@ -40,6 +40,7 @@ class Simple {
     serenity.allerArretSuivant();
     // debogue
     System.out.println(serenity);
+    System.out.println();
 
     kaylee.monterDans(serenity);
 
@@ -51,6 +52,7 @@ class Simple {
     System.out.println(serenity);
     System.out.println(kaylee);
     System.out.println(jayne);
+    System.out.println();
 
     Usager inara = new PassagerStandard("Inara", 5);
     inara.monterDans(serenity);
@@ -61,6 +63,7 @@ class Simple {
     System.out.println(kaylee);
     System.out.println(jayne);
     System.out.println(inara);
+    System.out.println();
 
     serenity.allerArretSuivant();
     // debogue
@@ -68,6 +71,7 @@ class Simple {
     System.out.println(kaylee);
     System.out.println(jayne);
     System.out.println(inara);
+    System.out.println();
 
     serenity.allerArretSuivant();
     // debogue
@@ -75,6 +79,7 @@ class Simple {
     System.out.println(kaylee);
     System.out.println(jayne);
     System.out.println(inara);
+    System.out.println();
   }
 }
 
