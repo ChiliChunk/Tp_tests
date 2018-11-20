@@ -122,13 +122,14 @@ public class PassagerStandardTest {
 		assertTrue(p.estDebout());
 	}
 
-	@Test
-	public void testNouvelArret() {
-		p.setEP(new EtatPassager(Etat.DEBOUT)); // on part du principe que le passager est deja dans un bus
-		p.nouvelArret(null, 2);
-		assertFalse(p.estDehors());
-		p.nouvelArret(null, 5);
-		assertTrue(p.estDehors());
-	}
+//	@Test
+//	public void testNouvelArret() {
+//		Autobus ab = new Autobus(1, 2);
+//		p.setEP(new EtatPassager(Etat.DEBOUT)); // on part du principe que le passager est deja dans un bus
+//		p.nouvelArret(null, 2);
+//		assertFalse(p.estDehors());
+//		p.nouvelArret(null, 5);
+//		assertTrue(p.estDehors());
+//	}
 
 }

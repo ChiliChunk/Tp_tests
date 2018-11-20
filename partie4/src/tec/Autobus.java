@@ -106,6 +106,7 @@ public class Autobus implements Transport, Bus{
 		if (this.jaugeDebout.estBleu() || this.jaugeDebout.estVert()) { // il y a de la place
 			this.jaugeDebout.incrementer();
 			this.jaugeAssis.decrementer();
+			p.accepterPlaceDebout();
 		}		
 		
 	}
@@ -115,6 +116,7 @@ public class Autobus implements Transport, Bus{
 		if (this.jaugeAssis.estBleu() || this.jaugeAssis.estVert()) { // il y a de la place
 			this.jaugeAssis.incrementer();
 			this.jaugeDebout.decrementer();
+			p.accepterPlaceAssise();
 		}				
 	}
 

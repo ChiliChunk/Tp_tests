@@ -7,11 +7,13 @@ import org.junit.Test;
 
 public class AutobusTest {
 	
-	private Autobus a;
+	private Autobus a, a2;
 	
 	@Before
 	public void setUp(){
 		this.a = new Autobus(1, 2);
+		this.a2 = new Autobus(1, 1);
+		
 	}
 	
 	@Test
@@ -53,54 +55,87 @@ public class AutobusTest {
 
 	@Test
 	public void testDemanderPlaceAssise() {
+		Passager p = new PassagerStandard("Temp", 5);
+		Passager p2 = new PassagerStandard("Temp2", 4);
 		a.setJaugeAssis(new JaugeNaturel(0,2,0));
 		assertTrue(a.aPlaceAssise());
-		a.demanderPlaceAssise(null);
-		a.demanderPlaceAssise(null);
+		a.demanderPlaceAssise(p);
+		a.demanderPlaceAssise(p2);
 		assertFalse(a.aPlaceAssise());
+		assertTrue(p.estAssis());
+		assertTrue(p2.estAssis());
 	}
 
 	@Test
 	public void testDemanderPlaceDebout() {
+		Passager p = new PassagerStandard("Temp", 5);
+		Passager p2 = new PassagerStandard("Temp2", 4);
 		a.setJaugeDebout(new JaugeNaturel(0,2,0));
 		assertTrue(a.aPlaceDebout());
-		a.demanderPlaceDebout(null);
-		a.demanderPlaceDebout(null);
+		a.demanderPlaceDebout(p);
+		a.demanderPlaceDebout(p2);
 		assertFalse(a.aPlaceDebout());
+		assertTrue(p.estDebout());
+		assertTrue(p2.estDebout());
 	}
 
 	@Test
 	public void testDemanderChangerEnDebout() {
+		Passager p = new PassagerStandard("Temp", 5);
+		Passager p2 = new PassagerStandard("Temp2", 4);
 		a.setJaugeDebout(new JaugeNaturel(0,2,0));
 		a.setJaugeAssis(new JaugeNaturel(0,2,0));
-		a.demanderPlaceAssise(null);
-		a.demanderPlaceAssise(null);
+		a.demanderPlaceAssise(p);
+		a.demanderPlaceAssise(p2);
+		assertTrue(p.estAssis());
+		assertTrue(p2.estAssis());
 		assertFalse(a.aPlaceAssise());
 		assertTrue(a.aPlaceDebout());
-		a.demanderChangerEnDebout(null);
-		a.demanderChangerEnDebout(null);
+		a.demanderChangerEnDebout(p);
+		a.demanderChangerEnDebout(p2);
 		assertFalse(a.aPlaceDebout());
 		assertTrue(a.aPlaceAssise());
+		assertTrue(p.estDebout());
+		assertTrue(p2.estDebout());
 
 	}
 
 	@Test
 	public void testDemanderChangerEnAssis() {
+		Passager p = new PassagerStandard("Temp", 5);
+		Passager p2 = new PassagerStandard("Temp2", 4);
 		a.setJaugeDebout(new JaugeNaturel(0,2,0));
 		a.setJaugeAssis(new JaugeNaturel(0,2,0));
-		a.demanderPlaceDebout(null);
-		a.demanderPlaceDebout(null);
+		a.demanderPlaceDebout(p);
+		a.demanderPlaceDebout(p2);
+		assertTrue(p.estDebout());
+		assertTrue(p2.estDebout());
 		assertTrue(a.aPlaceAssise());
 		assertFalse(a.aPlaceDebout());
-		a.demanderChangerEnAssis(null);
-		a.demanderChangerEnAssis(null);
+		a.demanderChangerEnAssis(p);
+		a.demanderChangerEnAssis(p2);
 		assertTrue(a.aPlaceDebout());
 		assertFalse(a.aPlaceAssise());
+		assertTrue(p.estAssis());
+		assertTrue(p2.estAssis());
 	}
 
-//	@Test
-//	public void testDemanderSortie() { // comment faire si aucune interaction encore avec Passager?
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testDemanderSortie() { // comment faire si aucune interaction encore avec Passager?
+		Usager p = new PassagerStandard("Temp", 1);
+		Usager p2 = new PassagerStandard("Temp2", 2);
+		try {
+			p.monterDans(a2);
+			p2.monterDans(a2);
+		} catch (UsagerInvalideException e) {
+			System.out.print("Erreur quand l'uager monte dans l'autobus");
+		}
+		assertTrue(((PassagerStandard)p).estAssis());
+		assertTrue(((PassagerStandard)p2).estDebout());
+		a2.demanderSortie((Passager)p);
+		assertTrue(((PassagerStandard)p).estDehors());
+		a2.demanderSortie((Passager)p2);
+		assertTrue(((PassagerStandard)p2).estDehors());		
+	}
 
 }
