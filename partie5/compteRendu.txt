@@ -1,0 +1,12 @@
+=> Cette solution est très mauvaise parce que l'algorithme va devenir compliquer, le code va etre très peu organisé (séparer les différents comportement) il va y avoir beaucoup de redondance de code pour les actions qui seront en commun dans les différents comportement
+
+=> Cette solution sépare déjà mieux les différents comportement mais ne répond toujours pas a la question de factorisation de code parce que les différents comportements ne partage pas de partie de code en commun, si on choisi de modifier une action executées par tout les comportement, il faut aller piocher dans chaque classe pour modifier le code partout 
+
+=> Cette solution semble la plus appropriée parce que cela permet a la fois de factoriser le code et de séparer les différent comportement pour facilement définir les différences entre chaque
+
+=> Il reste effectivement du code dupliqué, celui du constructeur qui va etre le meme pour PassagerStresse et PassagerLunatique
+
+=> Pour la rendre accessible on change la variable destination en protected
+Dans le cas on ont veut controler qu'il ne soit seulement possible de lire cette valeur et pas d'y avoir entierement acces, le getter serait lui aussi protected si on veut qu'il soit accessible par les classes filles
+
+=> En java, lorsqu'une classe hérite d'une autre, il faut que la premiere instruction dans le constructeur de la classe fille soit l'appel au constructeur de la classe mere. Il nous faut aussi forcement un constructeur dans la classe fille pour pouvoir avoir des instance de cette classe, surtout que la classe mère est abstraite et qu'on ne peut pas avoir d'instance de cette classe

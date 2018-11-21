@@ -1,0 +1,9 @@
+@startuml
+
+PassagerStandard -|> PassagerAbstrait
+PassagerLunatique -|> PassagerAbstrait
+PassagerStresse -|> PassagerAbstrait
+PassagerAbstrait ..|> Usager
+PassagerAbstrait ..|> Passager
+
+@enduml
