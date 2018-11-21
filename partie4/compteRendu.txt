@@ -1,4 +1,4 @@
-=> La contrainte est que on doit spécifier le paquetage par le mot clef paquetage au debut du fichier
+	=> La contrainte est que on doit spécifier le paquetage par le mot clef paquetage au debut du fichier
 Ex : package tec;
 
 => Les deux interfaces privées servent a définir des types et obliger la redifinition de methodes dans des classes mais en restant inaccessible pour le client
