@@ -1,5 +1,6 @@
 package tec;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 import tec.EtatPassager.Etat;
@@ -10,6 +11,7 @@ public class Autobus implements Transport, Bus{
 	private int indArret;
 	private ArrayList<Passager> alPassager;
 	private ArrayList<Passager> toRemove;
+	private int max;
 	
 	public ArrayList<Passager> getListPassager(){
 		return this.alPassager;
@@ -45,16 +47,28 @@ public class Autobus implements Transport, Bus{
 	}
 	
 	public Autobus(int assise , int debout) {
+		if (assise < 0 || debout < 0) {
+			throw new InvalidParameterException("Les nombres de places assises et debout ne doivent pas etre < 0");
+		}
 		this.jaugeAssis = new JaugeNaturel(0, assise, 0);
 		this.jaugeDebout = new JaugeNaturel(0, debout, 0);
 		this.indArret = 0;
 		this.alPassager = new ArrayList<Passager>();
 		this.toRemove = new ArrayList<Passager>();
+		this.max = 50; 
+	}
+	
+	public Autobus(int nbPlace) {
+		this(nbPlace , nbPlace);
 	}
 
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
 		this.indArret ++;
+		if (indArret > this.max ) { // implementation si par la suite nous voulons ajouter un arret supp a 50
+			throw new UsagerInvalideException("Arret max atteint");
+		}
+		
 		for (Passager pass : this.alPassager) { // on notifie tout les passagers du nouvel arret
 			pass.nouvelArret(this, indArret);
 		}

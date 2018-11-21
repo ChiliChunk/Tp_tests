@@ -1,0 +1,6 @@
+=> La contrainte est que on doit spécifier le paquetage par le mot clef paquetage au debut du fichier
+Ex : package tec;
+
+=> Les deux interfaces privées
+
+=> 

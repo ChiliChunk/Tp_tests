@@ -121,7 +121,7 @@ public class PassagerStandardTest {
 		p.accepterPlaceDebout();
 		assertTrue(p.estDebout());
 	}
-
+	
 //	@Test
 //	public void testNouvelArret() {
 //		Autobus ab = new Autobus(1, 2);

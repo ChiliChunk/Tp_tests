@@ -1,6 +1,6 @@
 package tec;
 
-import java.util.Random;
+import java.security.InvalidParameterException;
 
 import tec.EtatPassager.Etat;
 
@@ -28,9 +28,16 @@ public class PassagerStandard implements Usager , Passager {
 	}
 	
 	public PassagerStandard(String nom , int arret) {
+		if (nom.equals("") || arret < 1) {
+			throw new InvalidParameterException("Le nom ne doit pas etre vide et l'arret doit etre > 0");
+		}
 		this.nom = nom;
 		this.arret = arret;
 		this.EP = new EtatPassager(EtatPassager.Etat.DEHORS);
+	}
+	
+	public PassagerStandard(int destination) {
+		this("PassagerStandard" + destination , destination);
 	}
 	@Override
 	public String nom() {
@@ -39,16 +46,23 @@ public class PassagerStandard implements Usager , Passager {
 
 	@Override
 	public void monterDans(Transport t) throws UsagerInvalideException {
-		Bus b = null ;
+		if (this.getEP().getEtat() != Etat.DEHORS) {
+			throw new UsagerInvalideException("Erreur le passager veut monter alors qu'il est deja dans un bus");
+			
+		}
+		Autobus b = null ;
 		boolean error = false;
 		try{
-			b = (Bus)t;
+			b = (Autobus)t; // le cast en autobus est obligé pour connaitre sont arret pour throw exception si destination < arret
 		}catch(Exception e) {
 			error = true;
-			System.out.println("Le transport donné n'est pas un bus");
+			System.out.println("Le transport donné n'est pas un autobus");
 		}
 		
 		if (error == false) { // si le cast s'est bien passé
+			if (this.arret < b.getIndArret()) {
+				throw new UsagerInvalideException("La destination du passager < arret courant");
+			}
 			b.demanderPlaceAssise(this);
 			if (this.estAssis() == false) { // si il n'a pas reussi a avoir de place assise
 				b.demanderPlaceDebout(this);
@@ -95,7 +109,10 @@ public class PassagerStandard implements Usager , Passager {
 	}
 	
 	@Override
-	public void nouvelArret(Bus bus, int numeroArret) {
+	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException{
+		if (numeroArret > this.arret) {
+			throw new UsagerInvalideException("Destination < arretCourant"); // ne sera jamais atteint parce que on test deja cette erreur avant dans l'algo quand le passager monte dans le bus
+		}
 		if (numeroArret == this.arret) {
 			bus.demanderSortie(this);
 		}
