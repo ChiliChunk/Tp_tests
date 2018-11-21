@@ -10,9 +10,10 @@ import tec.EtatPassager.Etat;
 public class PassagerStandardTest {
 		
 	private PassagerStandard p , p2 , p3 , p4;
-	
+	Autobus testAutoBus;
 	@Before
 	public void setUp () {
+		testAutoBus = new Autobus(1, 2);
 		this.p = new PassagerStandard("Monique", 5);
 		this.p2 = new PassagerStandard("Gerard", 2);
 		this.p3 = new PassagerStandard("Azer", 6);
@@ -36,7 +37,7 @@ public class PassagerStandardTest {
 
 	@Test
 	public void testMonterDans() {
-		Autobus testAutoBus = new Autobus(1, 2);
+		
 		try {
 			p.monterDans(testAutoBus);
 		} catch (UsagerInvalideException e) {

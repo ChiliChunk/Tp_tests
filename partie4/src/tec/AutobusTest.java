@@ -8,11 +8,18 @@ import org.junit.Test;
 public class AutobusTest {
 	
 	private Autobus a, a2;
-	
+	private Passager p , p2;
+	private Usager u , u2;
 	@Before
 	public void setUp(){
 		this.a = new Autobus(1, 2);
 		this.a2 = new Autobus(1, 1);
+		
+		p = new PassagerStandard("Temp", 5);
+		p2 = new PassagerStandard("Temp2", 4);
+		
+		u= new PassagerStandard("Temp", 1);
+		u2 = new PassagerStandard("Temp2", 2);
 		
 	}
 	
@@ -68,8 +75,8 @@ public class AutobusTest {
 
 	@Test
 	public void testDemanderPlaceDebout() {
-		Passager p = new PassagerStandard("Temp", 5);
-		Passager p2 = new PassagerStandard("Temp2", 4);
+		p = new PassagerStandard("Temp", 5);
+		p2 = new PassagerStandard("Temp2", 4);
 		a.setJaugeDebout(new JaugeNaturel(0,2,0));
 		assertTrue(a.aPlaceDebout());
 		a.demanderPlaceDebout(p);
@@ -81,8 +88,8 @@ public class AutobusTest {
 
 	@Test
 	public void testDemanderChangerEnDebout() {
-		Passager p = new PassagerStandard("Temp", 5);
-		Passager p2 = new PassagerStandard("Temp2", 4);
+		p = new PassagerStandard("Temp", 5);
+		p2 = new PassagerStandard("Temp2", 4);
 		a.setJaugeDebout(new JaugeNaturel(0,2,0));
 		a.setJaugeAssis(new JaugeNaturel(0,2,0));
 		a.demanderPlaceAssise(p);
@@ -102,8 +109,8 @@ public class AutobusTest {
 
 	@Test
 	public void testDemanderChangerEnAssis() {
-		Passager p = new PassagerStandard("Temp", 5);
-		Passager p2 = new PassagerStandard("Temp2", 4);
+		p = new PassagerStandard("Temp", 5);
+		p2 = new PassagerStandard("Temp2", 4);
 		a.setJaugeDebout(new JaugeNaturel(0,2,0));
 		a.setJaugeAssis(new JaugeNaturel(0,2,0));
 		a.demanderPlaceDebout(p);
@@ -122,20 +129,19 @@ public class AutobusTest {
 
 	@Test
 	public void testDemanderSortie() { // comment faire si aucune interaction encore avec Passager?
-		Usager p = new PassagerStandard("Temp", 1);
-		Usager p2 = new PassagerStandard("Temp2", 2);
+		
 		try {
-			p.monterDans(a2);
-			p2.monterDans(a2);
+			u.monterDans(a2);
+			u2.monterDans(a2);
 		} catch (UsagerInvalideException e) {
 			System.out.print("Erreur quand l'uager monte dans l'autobus");
 		}
-		assertTrue(((PassagerStandard)p).estAssis());
-		assertTrue(((PassagerStandard)p2).estDebout());
-		a2.demanderSortie((Passager)p);
-		assertTrue(((PassagerStandard)p).estDehors());
-		a2.demanderSortie((Passager)p2);
-		assertTrue(((PassagerStandard)p2).estDehors());		
+		assertTrue(((PassagerStandard)u).estAssis());
+		assertTrue(((PassagerStandard)u2).estDebout());
+		a2.demanderSortie((Passager)u);
+		assertTrue(((PassagerStandard)u).estDehors());
+		a2.demanderSortie((Passager)u2);
+		assertTrue(((PassagerStandard)u2).estDehors());		
 	}
 
 }
