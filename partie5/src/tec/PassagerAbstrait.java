@@ -5,9 +5,11 @@ import java.security.InvalidParameterException;
 import tec.EtatPassager.Etat;
 
 public abstract class PassagerAbstrait implements Usager , Passager {
+	
 	protected EtatPassager EP;
 	private String nom;
 	protected int arret;
+	
 	public EtatPassager getEP() {
 		return EP;
 	}
