@@ -45,7 +45,9 @@ public abstract class PassagerAbstrait implements Usager , Passager {
 	}
 
 	@Override
-	public abstract void monterDans(Transport t) throws UsagerInvalideException;
+	public void monterDans(Transport t) throws UsagerInvalideException{
+		this.choixPlaceMontee((Bus)t);
+	}
 	
 
 	@Override
@@ -83,6 +85,21 @@ public abstract class PassagerAbstrait implements Usager , Passager {
 	}
 	
 	@Override
-	public abstract void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException;
+	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException{
+		if (numeroArret >  arret) {
+			throw new UsagerInvalideException("Destination < arretCourant"); // ne sera jamais atteint parce que on test deja cette erreur avant dans l'algo quand le passager monte dans le bus
+		}
+		if (numeroArret == this.arret) {
+			bus.demanderSortie(this);
+		}
+		else {
+			this.choixChangerPlace(bus, numeroArret);
+		}
+	}
+	
+	public abstract void choixPlaceMontee( Bus b);
+		
+	public abstract void choixChangerPlace( Bus b, int arret );
+
 
 }

@@ -5,3 +5,6 @@
 /partie4/.classpath
 /partie4/.settings/
 .recommenders/
+*/.idea/*
+*.iml
+*.tar
